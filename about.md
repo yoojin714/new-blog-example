@@ -27,3 +27,21 @@ Will this table work?
 | Data Science Projects | Data analysis, Web crawling, Time-series data | Not really |
 | Korean | The Korean alphabets, grammar, resources | Quite sure |
 | Random Topics | cowboys, sharks, Titanic... | Many ideas, but have to research each time |
+
+{{ % for animal in site.data.animals %}}
+- The {{ animal.name }} is a {{ animal.size }} animal.
+{% endfor %}
+
+## Large animals are the best! 
+
+{% for animal in site.data.animals %}
+{% if animal.size == "large" %}- <strong style="color: {{ animal.color }};">{{ animal.name }}</strong>
+{% else %}- <small>{{ animal.name }}</small>
+{% endif %}
+{% endfor %}
+
+## Small animals only! 
+{% assign small_animals = site.data.animals | where: "size", "small" %}
+{% for animal in small_animals %}
+- {{ animal.name | upcase }}
+{% endfor %}
